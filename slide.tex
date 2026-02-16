@@ -1,0 +1,184 @@
+\documentclass[dvipdfmx,12pt,aspectratio=169]{beamer}
+
+% テーマ
+\usetheme{Madrid}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[rounded][shadow=false]
+\makeatletter
+\pgfdeclareverticalshading[lower.bg,upper.bg]{bmb@transition}{200cm}{%
+  color(0pt)=(lower.bg); color(2pt)=(lower.bg); color(4pt)=(lower.bg)}
+\makeatother
+\setbeamertemplate{title page}[default][rounded=true]
+\logo{}
+\addtobeamertemplate{frametitle}{}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[anchor=north east,yshift=2pt] at (current page.north east){%
+      \href{https://www.koito.co.jp}{\includegraphics[height=0.8cm]{figures/logo(1).png}}};
+  \end{tikzpicture}}
+
+% カスタムカラー（RGB値を自由に変更してください）
+\definecolor{MainColor}{RGB}{10,186,181}       % メインカラー
+\definecolor{AccentColor}{RGB}{240, 140, 130}    % パステルピンク
+\setbeamercolor{structure}{fg=MainColor}
+\setbeamercolor{palette primary}{bg=MainColor, fg=white}
+\setbeamercolor{palette secondary}{bg=MainColor!80, fg=white}
+\setbeamercolor{palette tertiary}{bg=MainColor!60, fg=white}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=MainColor}
+\setbeamercolor{block title}{bg=MainColor, fg=white}
+\setbeamercolor{block body}{bg=MainColor!10}
+\setbeamercolor{block title alerted}{bg=AccentColor, fg=white}
+\setbeamercolor{block body alerted}{bg=AccentColor!10}
+\definecolor{ExampleColor}{RGB}{140, 190, 240}   % パステルブルー
+\setbeamercolor{block title example}{bg=ExampleColor, fg=white}
+\setbeamercolor{block body example}{bg=ExampleColor!10}
+\definecolor{BrownText}{RGB}{70, 30, 10}
+\setbeamercolor{normal text}{fg=BrownText}
+\setbeamercolor{itemize item}{fg=MainColor}
+\setbeamercolor{itemize subitem}{fg=MainColor}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}{--}
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{section in toc}[circle]
+
+% パッケージ
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+% 日本語
+\usepackage{pxjahyper}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+
+% フォント
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% 定理環境
+\newtheorem{thm}{定理}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+
+% タイトル
+\title{タイトル}
+\subtitle{サブタイトル}
+\author{氏名}
+\institute{所属}
+\date{\today}
+
+\begin{document}
+
+% --- 表紙 ---
+\begin{frame}
+\begin{tikzpicture}[remember picture,overlay]
+  \node[anchor=north east,yshift=2pt] at (current page.north east){%
+    \href{https://www.koito.co.jp}{\includegraphics[height=0.8cm]{figures/logo.png}}};
+\end{tikzpicture}
+\titlepage
+\end{frame}
+
+% --- 目次 ---
+\begin{frame}{目次}
+\tableofcontents
+\end{frame}
+
+% === 1. はじめに ===
+\section{はじめに}
+
+\begin{frame}{研究の背景}
+\begin{itemize}
+  \item 背景1
+  \item 背景2
+  \item 背景3
+\end{itemize}
+\end{frame}
+
+\begin{frame}{研究の目的}
+\begin{block}{目的}
+研究の目的をここに書く。
+\end{block}
+\end{frame}
+
+% === 2. 準備 ===
+\section{準備}
+
+\begin{frame}{定義と記号}
+\begin{dfn}
+定義の内容をここに書く。
+\end{dfn}
+
+\begin{lem}
+補題の内容をここに書く。
+\end{lem}
+\end{frame}
+
+% === 3. 主結果 ===
+\section{主結果}
+
+\begin{frame}{主定理}
+\begin{thm}
+主定理の内容をここに書く。
+\end{thm}
+
+\pause
+
+\begin{proof}
+証明の概略をここに書く。
+\end{proof}
+\end{frame}
+
+% === 4. 応用・具体例 ===
+\section{応用}
+
+\begin{frame}{具体例}
+\begin{exampleblock}{例}
+具体例をここに書く。
+\end{exampleblock}
+\end{frame}
+
+% === 5. まとめ ===
+\section{まとめ}
+
+\begin{frame}{まとめと今後の課題}
+\begin{itemize}
+  \item 結論1
+  \item 結論2
+\end{itemize}
+
+\begin{alertblock}{今後の課題}
+今後の課題をここに書く。
+\end{alertblock}
+\end{frame}
+
+
+% === 6. 画像つきスライド ===
+\section{画像付きスライド}
+\begin{frame}{画像付きスライド}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+        \item point 1
+        \item point 2
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{figures/IMG_3840(1).jpeg}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% --- 参考文献 ---
+\begin{frame}{参考文献}
+\begin{thebibliography}{99}
+\bibitem{ref1} 著者名, ``タイトル,'' 雑誌名, 2025.
+\end{thebibliography}
+\end{frame}
+
+
+
+
+
+
+\end{document}
