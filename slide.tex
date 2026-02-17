@@ -12,6 +12,10 @@
 \logo{}
 \addtobeamertemplate{frametitle}{}{%
   \begin{tikzpicture}[remember picture,overlay]
+    % 白 → MainColor のグラデーションバー（ヘッドライン全体をカバー）
+    \fill[left color=white, right color=MainColor]
+      (current page.north west) rectangle ([yshift=-1.1cm]current page.north east);
+    % ロゴ
     \node[anchor=north east,yshift=2pt] at (current page.north east){%
       \href{https://www.koito.co.jp}{\includegraphics[height=0.8cm]{figures/logo(1).png}}};
   \end{tikzpicture}}
@@ -70,13 +74,41 @@
 \begin{document}
 
 % --- 表紙 ---
-\begin{frame}
+{%
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+\begin{frame}[plain]
 \begin{tikzpicture}[remember picture,overlay]
-  \node[anchor=north east,yshift=2pt] at (current page.north east){%
-    \href{https://www.koito.co.jp}{\includegraphics[height=0.8cm]{figures/logo.png}}};
+  % 背景：左下の白から右上のMainColorへ斜めグラデーション
+  \fill[left color=white, right color=MainColor]
+    (current page.south west) rectangle (current page.north east);
+  % 右下に大きな装飾円
+  \fill[MainColor, opacity=0.15]
+    ([xshift=2cm, yshift=-1cm]current page.south east) circle (5cm);
+  % 左上に装飾円
+  \fill[AccentColor, opacity=0.12]
+    ([xshift=-3cm, yshift=1cm]current page.north west) circle (4cm);
+  % 斜めの区切り線
+  \draw[MainColor!60, line width=2pt]
+    ([xshift=-1cm]current page.south west) -- ([yshift=-2cm]current page.north east);
+  % ロゴ（右上）
+  \node[anchor=north east, xshift=-0.5cm, yshift=-0.5cm]
+    at (current page.north east){%
+    \href{https://www.koito.co.jp}{\includegraphics[height=1cm]{figures/logo.png}}};
+  % タイトル
+  \node[anchor=west, text width=12cm]
+    at ([xshift=1.5cm, yshift=1cm]current page.west){%
+    {\fontsize{28}{34}\selectfont\bfseries\color{BrownText}\inserttitle}\\[8pt]
+    {\fontsize{16}{20}\selectfont\color{BrownText!80}\insertsubtitle}};
+  % 著者・所属・日付（左下寄り）
+  \node[anchor=south west, text width=10cm]
+    at ([xshift=1.5cm, yshift=1.5cm]current page.south west){%
+    {\usebeamerfont{author}\color{BrownText}\insertauthor}\\[3pt]
+    {\usebeamerfont{institute}\color{BrownText!80}\insertinstitute}\\[3pt]
+    {\usebeamerfont{date}\color{BrownText!60}\insertdate}};
 \end{tikzpicture}
-\titlepage
 \end{frame}
+}
 
 % --- 目次 ---
 \begin{frame}{目次}
